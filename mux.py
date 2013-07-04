@@ -17,6 +17,7 @@ import wiringpi2
 import time
 import datetime
 import reset_mux
+import os
 
 pin_base = 65
 i2c_addr = 0x20
@@ -33,8 +34,19 @@ wiringpi2.digitalWrite(66,1)
 
 logfilename = 'mux.txt'
 
+# wenn die Datei schon vorhanden ist, dann lese den letzten Counterwert aus und fahre hier fort
+if os.path.isfile(logfilename):
+
+        a = open(logfilename, "r").readlines()
+        line = a[-1].split(' ')
+#       print line[0]
+        counter = int(line[0])
+else:   #wenn nicht, dann beginne mit 1
+        counter = 0
+
+
 timecheck = False
-counter = 0
+
 #sleep = 10*60/14 # 5 Minuten / Ventilanzahl
 sleep = 90*60/14-0.2 #90 minuten
 Sl = 65         #Hauptventil Chambers
