@@ -59,7 +59,7 @@ try:                                                                            
                                 print (currentdatetime, Valve[i], Valve[i-1], Chamber[i])
                                 text_file.write(ds[0] + " " + ds[1] + " " + ds[2] + " " + ds[3] + " " + ds[4] + "\n")
                                 text_file.close()
-                                if Valve[i] == 66 or Valve[i] == 67 or Valve[i] ==68:   #Ref Gase Ambient sind am Port 81 und 82 angeschlossen Cal-Gas=83
+                                if Valve[i] == 66 or Valve[i] == 67 or Valve[i] ==68:   #Ref Gase Ambient sind am Port 66 und 67 angeschlossen Cal-Gas=68
                                         wiringpi2.digitalWrite(Valve[i],1)      #oeffnet aktuelles Ventil
                                         wiringpi2.digitalWrite(Valve[i-1],0)    #schliesst vorheriges Ventil
                                         wiringpi2.digitalWrite(Sl,0)            #schliesst Probenventil
