@@ -12,6 +12,14 @@
 #gegen Mitternacht zwischen 00:00 und 01:31 wird ein zusaetzliches Ventil anstatt Ch1 einmalig angesteuert
 #Zeichnet die Schaltvorgaenge in einer Datei auf
 
+# Update:
+# schaut ob eine Logdatei vorhanden ist und übernimmt von ihr den letzt geschalteten Pin --> shuffelt die Arrayliste demnach
+# Schreibt eine Headerzeile in eine neue Datei
+# Hinzugekommen sind Record-Number und Unix-Timestamp
+# einige Funktionen wurden der Übersichtlichkeit halber in die read_file.py ausgegliedert
+
+
+
 import os
 import sys
 import wiringpi2
@@ -30,7 +38,7 @@ wiringpi2.mcp23017Setup(pin_base,i2c_addr)
 wiringpi2.mcp23017Setup(pin_base+16,i2c_addr_2)
 
 #reset_mux.reset()
-for pin in range(65,96):
+for pin in range(65,96):        #möglicherweise sollt man hier (65, 97) benutzen. Das umfasst den Bereich 65-96 ??
         wiringpi2.pinMode(pin,1)
         wiringpi2.digitalWrite(pin,0)
 
